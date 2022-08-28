@@ -1,3 +1,4 @@
+f = ('yours')
 (f.read())
 f.read()
 f.readline()
