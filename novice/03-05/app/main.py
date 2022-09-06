@@ -45,6 +45,7 @@ def detail (buah_id):
     print(data)
     return render_template("detail.html", context=data)
 
+
     # data = ["pisang", "mangga", "salak"]
         
         # print(30*"=")
@@ -73,6 +74,25 @@ def delete(buah_id):
     conn.commit()
     curs.close()
     conn.close()
+    return redirect ("/")
+
+@app.route("/update/<buah_id>")
+def update (buah_id):
+    conn = psycopg2.connect(
+        host="localhost",
+        database="contoh",
+        user="postgres",
+        password="wulan425" 
+    )
+
+    curs = conn.cursor()
+    namaLama = 'salak'
+    namaBaru = 'pir'
+    detailBaru = 'manis'
+    query = f"update buah set nama= '{namaBaru}', detail= '{detailBaru}' where nama = '{namaLama}'"
+    curs.execute(query)
+    conn.commit()
+    print("data masuk")
     return redirect ("/")
 
 if __name__ == "__main__":
